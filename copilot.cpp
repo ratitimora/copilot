@@ -15,12 +15,12 @@ ApplicationWatchdog wd(1800000, System.reset);
 void locationCallback(float lat, float lon, float accuracy)
 {
     Log.info("callback");
-    Particle.publish("googlemaps-data", "{ \"device\": \"" + String(System.deviceID()) + "\", \"lat\":\"" + String(lat) + "\", \"lon\":\"" + String(lon) + "\", \"satellites\":\"" + String(accuracy), PRIVATE);    
+    Particle.publish("googlemaps-data", "{ \"device\": \"" + String(System.deviceID()) + "\", \"lat\":\"" + String(lat) + "\", \"lon\":\"" + String(lon) + "\", \"satellites\":\"" + String(accuracy) + "\"}", PRIVATE);    
 }
 
 void setup()
 {
-    locator.withSubscribe(locationCallback).withLocatePeriodic(300);
+    locator.withSubscribe(locationCallback).withLocatePeriodic(3600);
 }
 
 void loop()
